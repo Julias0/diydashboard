@@ -1,0 +1,12 @@
+<div>
+    Use this email to sign up
+</div>
+<div>
+    {{email$|async}}
+</div>
+
+<div>
+    <div *ngFor="let item of inboxEmails$ | async as list">
+        <div [innerHTML]="item.html" ></div>
+    </div>
+</div>
