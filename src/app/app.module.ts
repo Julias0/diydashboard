@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDividerModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
