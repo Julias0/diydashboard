@@ -1,12 +1,24 @@
-<div>
+<div class="inbox">
+  <div class="inbox--header mat-headline">
     Use this email to sign up
-</div>
-<div>
+  </div>
+  <div class="inbox--email mat-body">
     {{email$|async}}
-</div>
-
-<div>
-    <div *ngFor="let item of inboxEmails$ | async as list">
-        <div [innerHTML]="item.html" ></div>
-    </div>
+  </div>
+  <div class="inbox--content-title mat-title">
+    Your inbox content:
+  </div>
+  <div class="inbox--content mat-body-1">
+    <mat-expansion-panel class="inbox--content-individual mat-elevation-z1" *ngFor="let item of inboxEmails$ | async as list">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          from: {{item.from}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{item.subject}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div [innerHTML]="item.html"></div>
+    </mat-expansion-panel>
+  </div>
 </div>
