@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+import { ClipboardModule } from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ClipboardModule
   ],
   providers: [
     {

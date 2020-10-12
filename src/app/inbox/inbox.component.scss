@@ -1,13 +1,19 @@
 .inbox {
-    margin: 24px;
+  margin: 24px;
+  font-size: 16px;
   &--header {
+    padding: 16px 0;
   }
   &--email {
+    padding: 14px;
+    border: 1px solid #ababab;
+    border-radius: 4px;
+    background-color: beige;
   }
   &--content-title {
-      margin: 12px;
+    padding: 16px 0;
   }
   &--content-individual {
-      margin: 12px 4px;
+    border-radius: 0;
   }
 }

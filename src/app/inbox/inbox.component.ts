@@ -4,6 +4,7 @@ import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-inbox',
@@ -15,10 +16,12 @@ export class InboxComponent implements OnInit {
   user$: Observable<User>;
   email$: Observable<string>;
   inboxEmails$: Observable<any>;
+  copyMessage = 'click above to copy this email';
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afStore: AngularFirestore
+    private afStore: AngularFirestore,
+    private clipboard: Clipboard
   ) { }
 
   ngOnInit(): void {
@@ -40,4 +43,11 @@ export class InboxComponent implements OnInit {
     );
   }
 
+  copyEmail(email) {
+    this.clipboard.copy(email);
+    this.copyMessage = 'copied!';
+    setTimeout(() => {
+      this.copyMessage = 'click above to copy this email';
+    }, 3000);
+  }
 }

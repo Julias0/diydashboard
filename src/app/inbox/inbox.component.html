@@ -1,15 +1,17 @@
 <div class="inbox">
-  <div class="inbox--header mat-headline">
+  <div class="inbox--header">
     Use this email to sign up
   </div>
-  <div class="inbox--email mat-body">
-    {{email$|async}}
+  <div *ngIf="email$|async as email" class="inbox--email" [cdkCopyToClipboard]="copyEmail(email)">
+    {{email}}
   </div>
-  <div class="inbox--content-title mat-title">
+  {{copyMessage}}
+  <div class="inbox--content-title">
     Your inbox content:
   </div>
-  <div class="inbox--content mat-body-1">
-    <mat-expansion-panel class="inbox--content-individual mat-elevation-z1" *ngFor="let item of inboxEmails$ | async as list">
+  <div class="inbox--content">
+    <mat-expansion-panel class="inbox--content-individual mat-elevation-z1"
+      *ngFor="let item of inboxEmails$ | async as list">
       <mat-expansion-panel-header>
         <mat-panel-title>
           from: {{item.from}}
