@@ -2,10 +2,13 @@
   <div class="inbox--header">
     Use this email to sign up
   </div>
-  <div *ngIf="email$|async as email" class="inbox--email" [cdkCopyToClipboard]="copyEmail(email)">
+  <div *ngIf="email$|async as email" class="inbox--email" (click)="changeNotifier()"
+    [cdkCopyToClipboard]="copyEmail(email)">
     {{email}}
   </div>
-  {{copyMessage}}
+  <div class="inbox--helptext">
+    {{copyMessage}}
+  </div>
   <div class="inbox--content-title">
     Your inbox content:
   </div>

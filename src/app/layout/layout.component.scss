@@ -3,4 +3,9 @@
     display: flex;
     justify-content: space-between;
   }
+
+  &--buttons {
+    display: flex;
+    align-items: center;
+  }
 }

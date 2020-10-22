@@ -4,16 +4,24 @@
   &--header {
     padding: 16px 0;
   }
+
   &--email {
     padding: 14px;
     border: 1px solid #ababab;
     border-radius: 4px;
     background-color: beige;
   }
+
   &--content-title {
     padding: 16px 0;
   }
+
   &--content-individual {
     border-radius: 0;
+  }
+
+  &--helptext {
+    font-size: 12px;
+    color: #ababab;
   }
 }

@@ -43,11 +43,14 @@ export class InboxComponent implements OnInit {
     );
   }
 
-  copyEmail(email) {
-    this.clipboard.copy(email);
+  changeNotifier() {
     this.copyMessage = 'copied!';
     setTimeout(() => {
       this.copyMessage = 'click above to copy this email';
     }, 3000);
+  }
+
+  copyEmail(email) {
+    this.clipboard.copy(email);
   }
 }
