@@ -18,6 +18,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@angular/fire/performance';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +39,18 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatIconModule,
     MatDividerModule,
     MatExpansionModule,
-    ClipboardModule
+    ClipboardModule,
+    AngularFireAnalyticsModule,
+    AngularFirePerformanceModule
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }
+    },
+    ScreenTrackingService,
+    UserTrackingService,
+    PerformanceMonitoringService
   ],
   bootstrap: [AppComponent]
 })

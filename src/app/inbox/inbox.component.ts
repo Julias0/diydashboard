@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap, take } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { AngularFireAnalytics } from '@angular/fire/analytics';
+import { AngularFirePerformance, trace } from '@angular/fire/performance';
 
 @Component({
   selector: 'app-inbox',
@@ -21,7 +23,9 @@ export class InboxComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private afAnalytics: AngularFireAnalytics,
+    private afPerformance: AngularFirePerformance
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +41,7 @@ export class InboxComponent implements OnInit {
       switchMap((user) => {
         return this.afStore.collection('emails', ref => ref.where('to', '==', user)).snapshotChanges();
       }),
+      trace('loadEmails'),
       map(
         snaps => snaps.map(snap => snap.payload.doc).map(doc => ({ id: doc.id, ...(doc.data() as any) }))
       )
@@ -44,6 +49,8 @@ export class InboxComponent implements OnInit {
   }
 
   changeNotifier() {
+    this.afAnalytics.logEvent('emailCopied');
+
     this.copyMessage = 'copied!';
     setTimeout(() => {
       this.copyMessage = 'click above to copy this email';
